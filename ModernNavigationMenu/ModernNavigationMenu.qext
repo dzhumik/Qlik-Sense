@@ -1,0 +1,18 @@
+{
+	"name": "ModernNavigationMenu",
+	"description": "Modern responsive navigation menu for Qlik Sense with Doclines design - Enhanced with search, submenus, badges, and premium animations",
+	"type": "visualization",
+	"version": "2.0.0",
+	"author": "Enhanced Navigation Team",
+	"homepage": "",
+	"keywords": "qlik-sense, visualization, navigation, menu, modern, responsive, search, submenu, badges, doclines",
+	"license": "MIT",
+	"repository": "",
+	"dependencies": {
+		"qlik-sense": ">=3.0.x"
+	},
+	"preview": "preview.png",
+	"icon": "navigation",
+	"contributes": {},
+	"supernova": false
+}

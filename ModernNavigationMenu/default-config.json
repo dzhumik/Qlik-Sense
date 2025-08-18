@@ -1,0 +1,79 @@
+{
+  "logoUrl": "",
+  "companyName": "Doclines",
+  "enableSearch": true,
+  "searchPlaceholder": "Search",
+  "startCollapsed": false,
+  "hideInEditMode": true,
+  "enableTooltips": true,
+  "mainMenuItems": [
+    {
+      "label": "Dashboard",
+      "iconUrl": "",
+      "target": "",
+      "hasSubmenu": false,
+      "clearFilters": false
+    },
+    {
+      "label": "Calendar",
+      "iconUrl": "",
+      "target": "",
+      "hasSubmenu": false,
+      "clearFilters": false
+    },
+    {
+      "label": "Documents",
+      "iconUrl": "",
+      "target": "",
+      "hasSubmenu": true,
+      "submenuItems": [
+        {
+          "label": "Inbox",
+          "iconUrl": "",
+          "target": "",
+          "clearFilters": false
+        },
+        {
+          "label": "Incoming",
+          "iconUrl": "",
+          "target": "",
+          "clearFilters": false
+        },
+        {
+          "label": "Export",
+          "iconUrl": "",
+          "target": "",
+          "clearFilters": false
+        }
+      ]
+    },
+    {
+      "label": "Statistics",
+      "iconUrl": "",
+      "target": "",
+      "hasSubmenu": false,
+      "clearFilters": false
+    },
+    {
+      "label": "Chat",
+      "iconUrl": "",
+      "target": "",
+      "hasSubmenu": false,
+      "clearFilters": false,
+      "badgeText": "5",
+      "badgeColor": "red"
+    }
+  ],
+  "bottomMenuItems": [
+    {
+      "label": "Info",
+      "iconUrl": "",
+      "target": ""
+    },
+    {
+      "label": "Request",
+      "iconUrl": "",
+      "target": ""
+    }
+  ]
+}

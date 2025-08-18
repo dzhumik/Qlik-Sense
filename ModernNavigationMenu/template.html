@@ -1,0 +1,26 @@
+<div qv-extension class="modern-menu-extension-container">
+    <!-- Control Panel (stays in the extension object for configuration) -->
+    <div class="control-panel">
+        <h3>🚀 Modern Navigation Menu - Enhanced</h3>
+        <div class="status-info">
+            <p><strong>Status:</strong> {{ layout.hideInEditMode && qlik.navigation.getMode() === 'edit' ? 'Hidden in Edit Mode' : 'Active' }}</p>
+            <p><strong>Company:</strong> {{ layout.companyName || 'Doclines' }}</p>
+            <p><strong>Search:</strong> {{ layout.enableSearch ? 'Enabled' : 'Disabled' }}</p>
+            <p><strong>Menu Items:</strong> {{ (layout.mainMenuItems || []).length }} main, {{ (layout.bottomMenuItems || []).length }} bottom</p>
+            <p><strong>Start Mode:</strong> {{ layout.startCollapsed ? 'Collapsed' : 'Expanded' }}</p>
+        </div>
+        <div class="instructions">
+            <p><strong>✨ New Features Added:</strong></p>
+            <p>• 🔍 Search functionality with filter button</p>
+            <p>• 📁 Expandable submenus with smooth animations</p>
+            <p>• 🏷️ Badge support with multiple colors</p>
+            <p>• 🎨 Modern Doclines-inspired design</p>
+            <p>• 💡 Improved tooltips in collapsed mode</p>
+            <p>• ⚡ Better hover effects and transitions</p>
+            <p>• 📱 Enhanced responsive design</p>
+            <br>
+            <p><strong>Configuration:</strong> Use the extension settings panel to configure all features.</p>
+            <p><strong>Navigation:</strong> The menu appears on the left side with full functionality.</p>
+        </div>
+    </div>
+</div>
