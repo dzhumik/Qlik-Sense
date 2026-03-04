@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Технические работы</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700;900&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #050810;
+      --surface: #0b1120;
+      --accent: #ff6b2b;
+      --accent2: #ff9a5c;
+      --text: #e8eaf0;
+      --muted: #4a5068;
+      --line: rgba(255,107,43,0.15);
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
+      overflow: hidden;
+    }
+
+    /* Animated grid background */
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridShift 20s linear infinite;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 40%, transparent 100%);
+    }
+    @keyframes gridShift {
+      0% { background-position: 0 0; }
+      100% { background-position: 60px 60px; }
+    }
+
+    /* Noise overlay */
+    .noise {
+      position: fixed;
+      inset: 0;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 150px;
+      pointer-events: none;
+    }
+
+    /* Glowing orbs */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+    .orb-1 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(255,107,43,0.12) 0%, transparent 70%);
+      top: -100px; left: -100px;
+      animation: orbFloat1 15s ease-in-out infinite;
+    }
+    .orb-2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(255,154,92,0.08) 0%, transparent 70%);
+      bottom: -80px; right: -80px;
+      animation: orbFloat2 18s ease-in-out infinite;
+    }
+    @keyframes orbFloat1 {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(60px, 40px); }
+    }
+    @keyframes orbFloat2 {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-40px, -60px); }
+    }
+
+    /* Main layout */
+    .container {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
+      gap: 2.5rem;
+      animation: fadeIn 1.2s ease forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Status badge */
+    .badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,107,43,0.08);
+      border: 1px solid rgba(255,107,43,0.25);
+      border-radius: 100px;
+      padding: 8px 20px;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      animation: fadeIn 1.2s 0.2s both;
+    }
+    .badge-dot {
+      width: 7px; height: 7px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+      box-shadow: 0 0 8px var(--accent);
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+
+    /* Heading */
+    .heading-wrap {
+      text-align: center;
+      animation: fadeIn 1.2s 0.4s both;
+    }
+    h1 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(2.2rem, 6vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #ffffff 30%, var(--accent2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    h1 span {
+      display: block;
+      font-weight: 300;
+      font-size: 0.45em;
+      letter-spacing: 0.1em;
+      -webkit-text-fill-color: var(--muted);
+      margin-top: 0.3em;
+      text-transform: uppercase;
+    }
+
+    /* Divider */
+    .divider {
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      animation: fadeIn 1.2s 0.5s both;
+    }
+
+    /* Description */
+    .desc {
+      text-align: center;
+      max-width: 480px;
+      font-size: 0.82rem;
+      line-height: 1.8;
+      color: #8a8fa8;
+      animation: fadeIn 1.2s 0.6s both;
+    }
+    .desc strong {
+      color: var(--accent2);
+      font-weight: 400;
+    }
+
+    /* Progress bar */
+    .progress-wrap {
+      width: 100%;
+      max-width: 420px;
+      animation: fadeIn 1.2s 0.8s both;
+    }
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .progress-label span:last-child {
+      color: var(--accent);
+    }
+    .progress-track {
+      height: 3px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 65%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 10px;
+      position: relative;
+      animation: progressAnim 3s ease forwards;
+    }
+    @keyframes progressAnim {
+      from { width: 0%; }
+      to { width: 65%; }
+    }
+    .progress-fill::after {
+      content: '';
+      position: absolute;
+      right: 0; top: -2px;
+      width: 8px; height: 8px;
+      background: var(--accent2);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent2);
+    }
+
+    /* Terminal block */
+    .terminal {
+      width: 100%;
+      max-width: 420px;
+      background: rgba(11,17,32,0.8);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px;
+      overflow: hidden;
+      animation: fadeIn 1.2s 1s both;
+      backdrop-filter: blur(10px);
+    }
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      background: rgba(255,255,255,0.02);
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot-r { background: #ff5f57; }
+    .dot-y { background: #ffbd2e; }
+    .dot-g { background: #28c940; }
+    .terminal-body {
+      padding: 16px 18px;
+      font-size: 0.72rem;
+      line-height: 2;
+      color: #556;
+    }
+    .terminal-body .line { display: flex; gap: 10px; animation: typeIn 0.3s ease both; }
+    .terminal-body .line:nth-child(1) { animation-delay: 1.2s; }
+    .terminal-body .line:nth-child(2) { animation-delay: 1.6s; }
+    .terminal-body .line:nth-child(3) { animation-delay: 2.0s; }
+    .terminal-body .line:nth-child(4) { animation-delay: 2.4s; }
+    @keyframes typeIn {
+      from { opacity: 0; transform: translateX(-6px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .prompt { color: var(--accent); }
+    .ok { color: #28c940; }
+    .warn { color: #ffbd2e; }
+    .cursor {
+      display: inline-block;
+      width: 7px; height: 13px;
+      background: var(--accent2);
+      animation: blink 1s step-end infinite;
+      vertical-align: middle;
+      margin-left: 4px;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; } 50% { opacity: 0; }
+    }
+
+    /* Footer */
+    .footer {
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      animation: fadeIn 1.2s 1.2s both;
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 2rem; }
+      .container { gap: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="grid-bg"></div>
+  <div class="noise"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <div class="container">
+    <div class="badge">
+      <div class="badge-dot"></div>
+      Система обновляется
+    </div>
+
+    <div class="heading-wrap">
+      <h1>
+        Технические<br>работы
+        <span>скоро вернёмся</span>
+      </h1>
+    </div>
+
+    <div class="divider"></div>
+
+    <p class="desc">
+      Мы обновляем сайт, чтобы стало <strong>лучше</strong>.<br>
+      Работы уже ведутся — совсем скоро всё будет готово.<br>
+      Спасибо за ваше терпение.
+    </p>
+
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span>Прогресс обновления</span>
+        <span>65%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill"></div>
+      </div>
+    </div>
+
+    <div class="terminal">
+      <div class="terminal-bar">
+        <div class="dot dot-r"></div>
+        <div class="dot dot-y"></div>
+        <div class="dot dot-g"></div>
+      </div>
+      <div class="terminal-body">
+        <div class="line"><span class="prompt">›</span><span class="ok">[OK]</span><span>Резервное копирование базы данных</span></div>
+        <div class="line"><span class="prompt">›</span><span class="ok">[OK]</span><span>Обновление зависимостей</span></div>
+        <div class="line"><span class="prompt">›</span><span class="warn">[..]</span><span>Миграция данных...</span></div>
+        <div class="line"><span class="prompt">›</span><span style="color:#4a5068">[  ]</span><span style="color:#333d55">Перезапуск сервисов<span class="cursor"></span></span></div>
+      </div>
+    </div>
+
+    <p class="footer">© 2025 — Все права защищены</p>
+  </div>
+</body>
+</html>
