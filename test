@@ -2,7 +2,7 @@
 📌 SQL и работа с данными
 1. Ограничение количества строк через TOP / LIMIT — контроль объёма тестовой выборки при отладке SQL-запроса к DWH
 При отладке SQL-запроса к DWH в Teradata нужно быстро проверить структуру таблицы fact_sales — какой синтаксис использовать?
-❌
+❌https://claude.com/cai/oauth/authorize?code=true&client_id=9d1c250a-e61b-44d9-88ed-5944d1962f5e&response_type=code&scope=user%3Aprofile+user%3Ainference+user%3Asessions%3Aclaude_code+user%3Amcp_servers+user%3Afile_upload&code_challenge=ZlJAy7w0qozH3zusi75le-VqcNU5gbS1EB66-APEg4I&code_challenge_method=S256&state=AZ7pTfQ90P88y2p-mdCa-wxtlOhNrq0a6NJPnuaulZw&redirect_uri=https%3A%2F%2Fplatform.claude.com%2Foauth%2Fcode%2Fcallback
 1. `DESCRIBE fact_sales;` — стандартная команда для просмотра структуры таблицы в Teradata.
 2. `SELECT TOP 1 * FROM fact_sales` — вернёт одну строку, но Teradata не поддерживает TOP, нужно использовать SAMPLE вместо него.
 3. Используйте SHOW TABLE fact_sales; — он возвращает DDL таблицы без сканирования данных.
